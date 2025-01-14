@@ -6,9 +6,11 @@ Created on Tue Jan 14 18:26:41 2025
 from qutip import *
 import matplotlib.pyplot as plt
 import numpy as np
+import functools 
 
 #%% functions
 # probability of k losses with ns scattering events
+@functools.cache   # this decorator helps tremendously with recursive calls! 
 def p_k_loss_with_ns_scattering(ns, k, N):
     if k >ns:
         return 0
@@ -47,7 +49,8 @@ def nsc_for_desired_squeezing(x_a, N, chi_tau, Gamma=2*np.pi*0.184, kappa=2*np.p
     return int(chi_tau * N / np.abs(Q_per_scattered(eta, N, x_a, x_a*Gamma/kappa)))
 
 def squeezing(rho, N, chi_tau):
-    return (-1j * chi_tau * jmat(N/2, 'z')**2).expm() * rho * (-1j * chi_tau * jmat(N/2, 'z')**2).expm().dag()
+    u = (-1j * chi_tau * jmat(N/2, 'z')**2).expm()
+    return  u * rho * u.dag()
 
 # This is the main function that calculates the final state
 def squeezing_with_scattering(rho, chi_tau, x_a):
