@@ -59,7 +59,7 @@ def squeezing_with_scattering(rho, chi_tau, x_a):
 
 #%% parameters
 chi_tau = np.pi/4
-N=20
+N = 20
 
 #%% find optimal x_a
 x_a_vec = np.linspace(10, 20, 20)
@@ -73,6 +73,6 @@ plt.ylabel("n_sc")
 plt.show()
 
 #%% main - calculate final state after squeezing with scattering
-theta=np.pi/4
+theta = np.pi/4
 rho_initial = ket2dm(spin_coherent(N/2, theta, 0))
 rho_final = squeezing_with_scattering(rho_initial, chi_tau, x_a)
