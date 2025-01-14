@@ -72,6 +72,7 @@ plt.xlabel("x_a")
 plt.ylabel("n_sc")
 plt.show()
 
-#%% final state
+#%% main - calculate final state after squeezing with scattering
 theta=np.pi/4
-rho_final = squeezing_with_scattering(ket2dm(spin_coherent(N/2, theta, 0)), chi_tau, x_a)
+rho_initial = ket2dm(spin_coherent(N/2, theta, 0))
+rho_final = squeezing_with_scattering(rho_initial, chi_tau, x_a)
