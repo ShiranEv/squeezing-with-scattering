@@ -58,8 +58,8 @@ def squeezing_with_scattering(rho, chi_tau, x_a):
     return scattered_state
 
 #%% parameters
-chi_tau = np.pi/4
-N = 20
+chi_tau = np.pi/4 # squeezing parameter
+N = 20 # number of atoms
 
 #%% find optimal x_a
 x_a_vec = np.linspace(10, 20, 20)
