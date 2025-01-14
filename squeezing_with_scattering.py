@@ -60,22 +60,28 @@ def squeezing_with_scattering(rho, chi_tau, x_a):
     scattered_state = return_scattered_state(squeezed_state, ns, N)
     return scattered_state
 
-#%% parameters
-chi_tau = np.pi/4 # squeezing parameter
-N = 20 # number of atoms
 
-#%% find optimal x_a
-x_a_vec = np.linspace(10, 20, 20)
-ns_vec = [nsc_for_desired_squeezing(x_a, N, chi_tau, Gamma=2*np.pi*0.184, kappa=2*np.pi*0.84, eta=3.2) for x_a in x_a_vec]
-x_a = x_a_vec[np.argmin(ns_vec)]
+def main_test():
+    #%% parameters
+    chi_tau = np.pi/4 # squeezing parameter
+    N = 20 # number of atoms
 
-#%% plot
-plt.plot(x_a_vec, ns_vec, '.')
-plt.xlabel("x_a")
-plt.ylabel("n_sc")
-plt.show()
+    #%% find optimal x_a
+    x_a_vec = np.linspace(10, 20, 20)
+    ns_vec = [nsc_for_desired_squeezing(x_a, N, chi_tau, Gamma=2*np.pi*0.184, kappa=2*np.pi*0.84, eta=3.2) for x_a in x_a_vec]
+    x_a = x_a_vec[np.argmin(ns_vec)]
 
-#%% main - calculate final state after squeezing with scattering
-theta = np.pi/4
-rho_initial = ket2dm(spin_coherent(N/2, theta, 0))
-rho_final = squeezing_with_scattering(rho_initial, chi_tau, x_a)
+    #%% plot
+    plt.plot(x_a_vec, ns_vec, '.')
+    plt.xlabel("x_a")
+    plt.ylabel("n_sc")
+    plt.show()
+
+    #%% main - calculate final state after squeezing with scattering
+    theta = np.pi/4
+    rho_initial = ket2dm(spin_coherent(N/2, theta, 0))
+    rho_final = squeezing_with_scattering(rho_initial, chi_tau, x_a)
+
+
+if __name__ == '__main__':
+    main_test()
