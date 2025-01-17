@@ -61,6 +61,9 @@ def squeezing_with_scattering(rho, chi_tau, x_a):
     return scattered_state
 
 
+
+#%% main test
+
 def main_test():
     #%% parameters
     chi_tau = np.pi/4 # squeezing parameter
@@ -82,6 +85,7 @@ def main_test():
     rho_initial = ket2dm(spin_coherent(N/2, theta, 0))
     rho_final = squeezing_with_scattering(rho_initial, chi_tau, x_a)
 
+#%%
 
 if __name__ == '__main__':
     main_test()
